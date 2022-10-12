@@ -1,0 +1,248 @@
+<!-- A website which gives weather information for the selected city  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="./CSS/index.css" />
+  </head>
+  <body>
+    <!-- detailed weather conditions for the selected cityy  -->
+    <div class="top-container">
+      <div class="top-header flexcol">
+        <div class="city-icon">
+          <img class="icon" id="icon" src="./assets/london.svg" alt="no-img" />
+          <input
+            autocomplete="off"
+            id="city"
+            name="city"
+            list="city-selector"
+            value="London"
+          />
+          <datalist autocomplete="off" id="city-selector"> </datalist>
+        </div>
+        <div class="bottom">
+          <p>
+            <span id="citytimemin"></span
+            ><span class="font" id="citytimesec"></span>
+            <img
+              class="am-icon"
+              id="citytimeimg"
+              src="./assets/loading.png"
+              alt="am"
+            /><br />
+          </p>
+          <p id="citydate"></p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="timewise-line">
+          <p class="temp">Temp &#8451;</p>
+          <p>
+            <strong><span id="tempc" class="degree"></span></strong>
+          </p>
+        </div>
+        <div class="line" >
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+        </div>
+        <div class="timewise-line">
+          <p class="temp">Humidity</p>
+          <p>
+            <strong
+              ><span class="degree"
+                ><span id="temphumidity" class="color"> </span><span id="percentage-color" class="percentage-color"></span>
+              </span></strong
+            >
+          </p>
+        </div>
+        <div class="timewise-line">
+          <p class="temp"><span>Temp F</span></p>
+          <p class="degree">
+            <strong><span id="tempf"></span></strong>
+          </p>
+        </div>
+        <div class="line">
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+          <div class="line-dash"></div>
+        </div>
+        <div class="timewise-line">
+          <p class="temp">Precipitation</p>
+          <p>
+            <strong
+              ><span class="degree"
+                ><span id="degree" class="color"> </span><span id="percentage-color-1" class="percentage-color"></span>
+              </span></strong
+            >
+          </p>
+        </div>
+      </div>
+      <div class="flex3 flexrow">
+        <div class="weather flexcol">
+          <div id="now" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud" class="img" src="./assets/loading.png" />
+          <div id="nowtemp" class="text"></div>
+        </div>
+        <div class="weather flexcol">
+          <div class="text">&nbsp;</div>
+          <div class="text1">|</div>
+        </div>
+        <div class="weather flexcol">
+          <div id="hour1" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud1" class="img" src="./assets/loading.png" />
+          <div id="temp1" class="text"></div>
+        </div>
+        <div class="weather flexcol">
+          <div class="text">&nbsp;</div>
+          <div class="text1">|</div>
+        </div>
+        <div class="weather flexcol">
+          <div id="hour2" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud2" class="img" src="./assets/loading.png" />
+          <div id="temp2" class="text"></div>
+        </div>
+        <div class="weather flexcol">
+          <div class="text">&nbsp;</div>
+          <div class="text1">|</div>
+        </div>
+        <div class="weather flexcol">
+          <div id="hour3" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud3" class="img" src="./assets/loading.png" />
+          <div id="temp3" class="text"></div>
+        </div>
+        <div class="weather flexcol">
+          <div class="text">&nbsp;</div>
+          <div class="text1">|</div>
+        </div>
+        <div class="weather flexcol">
+          <div id="hour4" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud4" class="img" src="./assets/loading.png" />
+          <div id="temp4" class="text"></div>
+        </div>
+        <div class="weather flexcol">
+          <div class="text">&nbsp;</div>
+          <div class="text1">|</div>
+        </div>
+        <div class="weather flexcol">
+          <div id="hour5" class="text"></div>
+          <div class="text">|</div>
+          <img id="imgcloud5" class="img" src="./assets/loading.png" />
+          <div id="temp5" class="text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- display weather conditions for a set of shortlisted cities which are sorted based on the chosen weather parameter.-->
+    <div class="middle-container flexcol">
+      <section>
+        <div class="middle-scroll">
+          <div class="top-cities-heading">
+            <div class="heading" id="cards-heading"></div>
+            <div class="display-side-selection-icon flexrow">
+              <div>
+                <button id="sunnyiconbtn">
+                  <img
+                    id="sunnyiconimg"
+                    class="side-icons"
+                    src="./assets/sunnyIcon.svg"
+                  />
+                </button>
+              </div>
+              <div class="display-side-selection-container">
+                <button id="coldiconbtn">
+                  <img
+                    id="coldiconimg"
+                    class="side-icons"
+                    src="./assets/snowflakeIcon.svg"
+                  />
+                </button>
+              </div>
+              <div class="display-side-selection-container">
+                <button id="rainyiconbtn">
+                  <img
+                    id="rainyiconimg"
+                    class="side-icons"
+                    src="./assets/rainyIcon.svg"
+                  />
+                </button>
+              </div>
+              <div class="display-side-selection-container">
+                <p class="side-heading">Display Top</p>
+              </div>
+              <div class="display-side-selection-container">
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  min="3"
+                  max="10"
+                  value="4"
+                  oninput="this.value=(parseInt(this.value)<3)?3:parseInt(this.value)>10?10:this.value"
+                />
+              </div>
+            </div>
+          </div ><br><br>
+          <div class="flexrow buttonflex">
+            <div  id="backwardArrow" class="display-button">
+              <div class="backward-Arrow">
+                <img class="backward-Arrowbutton" id="backwardArrowbtn" src='./assets/backwardArrow.svg'/>
+              </div>
+            </div>
+            <div id="cards-container" class="cards-flex "></div>
+          <div  id="forwardArrow" class="display-button">
+            <div class="forward-Arrow">
+              <img class="forward-Arrowbutton" id="forwardArrowbtn" src='./assets/forwardArrow.svg'/>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+       
+      </section>
+      <!--display summary of weather conditions for the list of given cities that can be sorted and viewed-->
+      <div class="bottom-heading-container">
+        <div class="cities-glance-heading">
+          <strong>Cities across continents at a Glance</strong>
+        </div>
+        <div class="arrow-continentname">
+          Continent Name
+          <img class="name-Arrow" id="nameArrow" src="./assets/arrowDown.svg" />
+        </div>
+        <div class="arrow-countrytemp">
+          Temperature
+          <img class="temp-Arrow" id="tempArrow" src="./assets/arrowUp.svg" />
+        </div>
+      </div>
+      <div class="cities-grid" id="cities-grid">
+        
+      </div>
+    </div>
+  </div>
+  
+    <!-- <script type="text/javascript" src="./data/data.json"></script> -->
+    <script type="module" src="script/index.js"></script>
+    <script type="module" src="script/utility.js"></script>
+    <script type="module" src="script/weatherdata.js"></script>
+  </body>
+</html>
